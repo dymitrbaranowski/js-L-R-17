@@ -75,3 +75,12 @@ body {
     height: 200px;
     border: 1px black solid;
   } */
+
+.content {
+  background-color: red;
+  width: 600px;
+  height: 600px;
+  font-size: 38px;
+  font-weight: bold
+  color: yellow;
+}
