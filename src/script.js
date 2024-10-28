@@ -40,27 +40,98 @@
 // console.log(id3);
 // clearInterval(id);
 
-const content = document.querySelector('.content');
-const text = document.querySelector('.text');
-let counter = 8;
-text.textContent = `Залишилось ${counter} секунд`;
+// const content = document.querySelector('.content');
+// const text = document.querySelector('.text');
+// let counter = 8;
+// text.textContent = `Залишилось ${counter} секунд`;
 
-const id = setInterval(() => {
-  counter -= 1;
-  text.textContent = `Залишилось ${counter} секунд`;
+// const id = setInterval(() => {
+//   counter -= 1;
+//   text.textContent = `Залишилось ${counter} секунд`;
+// }, 1000);
+
+// const idOut = setTimeout(() => {
+//   clearInterval(id);
+//   content.style.display = 'none';
+// }, 1000 * counter);
+
+// console.log('id', id);
+// console.log('idOut', idOut);
+
+// const currentDate = new Date();
+// const targetDate = new Date('Jul 05 2025');
+// console.log(currentDate);
+// console.log(targetDate);
+
+// console.log(targetDate - currentDate);
+
+const selectors = {
+  day: document.querySelector('.date-day'),
+  date: document.querySelector('.date'),
+  month: document.querySelector('.date-month'),
+  year: document.querySelector('.date-year'),
+  clock: document.querySelector('.digital-clock'),
+  seconds: document.querySelector('.clock-seconds__arrow'),
+  minutes: document.querySelector('.clock-minutes__arrow'),
+  hours: document.querySelector('.clock-hours__arrow'),
+};
+
+const currentDate = new Date();
+const arrDay = [
+  'Неділя',
+  'Понеділок',
+  'Вівторок',
+  'Середа',
+  'Четвер',
+  'П`ятниця',
+  'Субота',
+];
+const namesOfMonth = [
+  'Січень',
+  'Лютий',
+  'Березень',
+  'Квітень',
+  'Травень',
+  'Червень',
+  'Липень',
+  'Серпень',
+  'Вересень',
+  'Жовтень',
+  'Листопад',
+  'Грудень',
+];
+
+setInterval(() => {
+  const currentDate = new Date();
+
+  const day = currentDate.getDay();
+  const date = currentDate.getDate();
+  const month = currentDate.getMonth();
+  const year = currentDate.getFullYear();
+
+  const localTime = currentDate.toLocaleTimeString('uk-UA');
+
+  selectors.day.textContent = arrDay[day];
+  selectors.month.textContent = namesOfMonth[month];
+  selectors.date.textContent = date;
+  selectors.year.textContent = year;
+  selectors.clock.textContent = `Поточний час${localTime}`;
+
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+  const seconds = currentDate.getSeconds();
+  const secondDeg = (360 / 60) * seconds;
+  const minutesDeg = (360 / 60) * minutes; //  + (360 / 3600) * seconds;
+  const hoursDeg = (360 / 12) * hours + (360 / 12 / 60) * minutes;
+
+  selectors.seconds.style.transform = `rotate(${secondDeg}deg)`;
+  selectors.minutes.style.transform = `rotate(${minutesDeg}deg)`;
+  selectors.hours.style.transform = `rotate(${hoursDeg}deg)`;
 }, 1000);
 
-setTimeout(() => {
-  clearInterval(id);
-  content.style.display = 'none';
-}, 1000 * counter);
+// console.log('month', month);
+// console.log(namesOfMonth[month]);
 
-// const date = new Date();
-// console.log(date);
-
-// const namesOfMonth = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'];
-
-// const arrDay = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П`ятниця', 'Субота'];
 // console.log(namesOfMonth[date.getMonth()]);
 
 // console.log(arrDay[date.getDay()]);
