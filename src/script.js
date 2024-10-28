@@ -318,7 +318,7 @@
 const promise = new Promise((res, rej) => {
   setTimeout(() => {
     const val = Math.random();
-    if (val > 0.2) {
+    if (val > 0.5) {
       res('Yeeees');
     } else {
       rej('Noooo');
@@ -328,9 +328,18 @@ const promise = new Promise((res, rej) => {
 console.log(promise);
 
 promise
-  .then(value => {})
-  .catch(err => {})
-  .finally(() => {});
+  .then(value => {
+    return value + '😊';
+  })
+  .then(value => {
+    console.log(value, qwerty);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    console.log('after');
+  });
 
 // promise
 //   .then((value) => {
