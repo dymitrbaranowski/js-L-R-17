@@ -413,21 +413,40 @@ start.addEventListener('click', onStart);
 // }
 
 function onStart() {
-  const result = [];
+  let counter = 0;
+
   [...container.children].forEach(box => (box.textContent = ''));
+
   const promises = [...container.children].map((_, i) => createPromise(i));
-  Promise.allSettled(promises).then(item => console.log(item));
+  Promise.allSettled(promises).then(items => {
+    items.forEach((item, i) => {
+      setTimeout(() => {
+        if (item.status === 'fulfilled') {
+          counter += 1;
+        }
+        container.children[i].textContent = item.value || item.reason;
+
+        if (container.children.length - 1 === i) {
+          setTimeout(() => {
+            if (counter === container.children.length || !counter) {
+              alert('Winer!');
+            } else {
+              alert('Lost money');
+            }
+          }, 500);
+        }
+      }, i * 1000);
+    });
+  });
 }
 
-function createPromise(delay) {
+function createPromise() {
   return new Promise((res, rej) => {
-    setTimeout(() => {
-      const random = Math.random();
-      if (random > 0.7) {
-        res('🤑');
-      } else {
-        rej('😈');
-      }
-    }, 1000 * delay);
+    const random = Math.random();
+    if (random > 0.7) {
+      res('🤑');
+    } else {
+      rej('😈');
+    }
   });
 }
