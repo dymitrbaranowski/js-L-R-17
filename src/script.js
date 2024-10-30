@@ -375,35 +375,26 @@ const container = document.querySelector('.js-container');
 
 start.addEventListener('click', onStart);
 
-function onStart() {
-  // [...container.]
-}
-
-// const start = document.querySelector('.js-start');
-// const container = document.querySelector('.js-container');
-
-// start.addEventListener('click', onStart);
-
 // function onStart() {
 //   const result = [];
-//   [...container.children].forEach((box) => (box.textContent = ""));
+//   [...container.children].forEach(box => (box.textContent = ''));
 //   [...container.children].forEach((box, i) => {
 //     createPromise(i)
-//       .then((smile) => {
+//       .then(smile => {
 //         box.textContent = smile;
-//         result.push("1");
+//         result.push('1');
 //       })
-//       .catch((smile) => (box.textContent = smile))
+//       .catch(smile => (box.textContent = smile))
 //       .finally(() => {
 //         setTimeout(() => {
 //           if (i === container.children.length - 1) {
 //             if (!result.length || result.length === 3) {
-//               alert("Winner");
+//               alert('winner');
 //             } else {
-//               alert("Lost money");
+//               alert('Lost money');
 //             }
 //           }
-//         },500);
+//         }, 600);
 //       });
 //   });
 // }
@@ -412,53 +403,31 @@ function onStart() {
 //   return new Promise((res, rej) => {
 //     setTimeout(() => {
 //       const random = Math.random();
-//       if (random > 0.1) {
-//         res("🤑");
+//       if (random > 0.7) {
+//         res('🤑');
 //       } else {
-//         rej("😈");
+//         rej('😈');
 //       }
 //     }, 1000 * delay);
 //   });
 // }
 
-// function onStart() {
-//   let counter = 0;
+function onStart() {
+  const result = [];
+  [...container.children].forEach(box => (box.textContent = ''));
+  const promises = [...container.children].map((_, i) => createPromise(i));
+  Promise.allSettled(promises).then(item => console.log(item));
+}
 
-//   [...container.children].forEach((box) => (box.textContent = ""));
-
-//   const promises = [...container.children].map(( _, i) => createPromise(i));
-
-//   Promise.allSettled(promises).then((items) => {
-//     console.log(items);
-//     items.forEach((item, i) => {
-//       setTimeout(() => {
-//         if (item.status === "fulfilled") {
-//           counter += 1;
-//         }
-//         console.log(item);
-//         container.children[i].textContent = item.value || item.reason;
-
-//         if (container.children.length - 1 === i) {
-//           setTimeout(() => {
-//             if (counter === container.children.length || !counter) {
-//               alert("Winner");
-//             } else {
-//               alert("Lost money");
-//             }
-//           }, 500);
-//         }
-//       }, i * 1000);
-//     });
-//   });
-// }
-
-// function createPromise() {
-//   return new Promise((res, rej) => {
-//     const random = Math.random();
-//     if (random > 0.5) {
-//       res("🤑");
-//     } else {
-//       rej("😈");
-//     }
-//   });
-// }
+function createPromise(delay) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const random = Math.random();
+      if (random > 0.7) {
+        res('🤑');
+      } else {
+        rej('😈');
+      }
+    }, 1000 * delay);
+  });
+}
