@@ -315,31 +315,31 @@
 
 // console.log('4');
 
-const promise = new Promise((res, rej) => {
-  setTimeout(() => {
-    const val = Math.random();
-    if (val > 0.5) {
-      res('Yeeees');
-    } else {
-      rej('Noooo');
-    }
-  }, 3000);
-});
-console.log(promise);
+// const promise = new Promise((res, rej) => {
+//   setTimeout(() => {
+//     const val = Math.random();
+//     if (val > 0.5) {
+//       res('Yeeees');
+//     } else {
+//       rej('Noooo');
+//     }
+//   }, 3000);
+// });
+// console.log(promise);
 
-promise
-  .then(value => {
-    return value + '😊';
-  })
-  .then(value => {
-    console.log(value, qwerty);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    console.log('after');
-  });
+// promise
+//   .then(value => {
+//     return value + '😊';
+//   })
+//   .then(value => {
+//     console.log(value);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     console.log('after');
+//   });
 
 // promise
 //   .then((value) => {
@@ -356,14 +356,28 @@ promise
 //     console.log("after");
 //   });
 
-// const promise = fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+// const promise = fetch('https://pokeapi.co/api/v2/pokemon/ditto');
 
 // console.log(promise);
+
+// promise
+//   .then(resp => resp.json())
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
 
 // promise
 // .then((resp) => resp.json())
 // .then(data => console.log(data))
 // .catch((err) => console.log(err));
+
+const start = document.querySelector('.js-start');
+const container = document.querySelector('.js-container');
+
+start.addEventListener('click', onStart);
+
+function onStart() {
+  // [...container.]
+}
 
 // const start = document.querySelector('.js-start');
 // const container = document.querySelector('.js-container');
